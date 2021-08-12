@@ -12,6 +12,7 @@ package programacao;
 public class Terminal extends javax.swing.JFrame {
 
     Conta conta1;
+    Conta conta2;
     
     /**
      * Creates new form Terminal
@@ -21,13 +22,18 @@ public class Terminal extends javax.swing.JFrame {
         
         
         conta1 = new Conta(1, 123, "Kelwin", 500);
+        conta2 = new Conta(1, 456, "José", 500);
         
-        lblConta1.setText(conta1.getNomePessoa());
-        lblSaldo1.setText(Tools.formatarValor(conta1.getSaldo()));
+        imprimeConta();
+       
+    }
+    
+    public void imprimeConta(){
+        lblConta2.setText(conta1.getNomePessoa());
+        lblSaldo2.setText(Tools.formatarValor(conta1.getSaldo()));
         
-        
-        
-        
+        lblConta4.setText(conta2.getNomePessoa());
+        lblSaldo4.setText(Tools.formatarValor(conta2.getSaldo()));
     }
 
     /**
@@ -58,7 +64,7 @@ public class Terminal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jpnConta1.setBorder(javax.swing.BorderFactory.createTitledBorder("CONTA"));
+        jpnConta1.setBorder(javax.swing.BorderFactory.createTitledBorder("CONTA 1"));
 
         lblConta1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblConta1.setText("Conta:");
@@ -75,7 +81,7 @@ public class Terminal extends javax.swing.JFrame {
         lblConta2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblConta2.setText("nome");
 
-        lblSaldo2.setText("valor");
+        lblSaldo2.setText("R$");
 
         btnDepositar1.setText("Depositar");
         btnDepositar1.addActionListener(new java.awt.event.ActionListener() {
@@ -127,7 +133,7 @@ public class Terminal extends javax.swing.JFrame {
                 .addContainerGap(35, Short.MAX_VALUE))
         );
 
-        jpnConta2.setBorder(javax.swing.BorderFactory.createTitledBorder("CONTA"));
+        jpnConta2.setBorder(javax.swing.BorderFactory.createTitledBorder("CONTA 2"));
 
         lblConta3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblConta3.setText("Conta:");
@@ -144,7 +150,7 @@ public class Terminal extends javax.swing.JFrame {
         lblConta4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblConta4.setText("nome");
 
-        lblSaldo4.setText("valor");
+        lblSaldo4.setText("R$");
 
         btnDepositar2.setText("Depositar");
         btnDepositar2.addActionListener(new java.awt.event.ActionListener() {
@@ -223,21 +229,35 @@ public class Terminal extends javax.swing.JFrame {
     private void btnSacar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSacar1ActionPerformed
         // TODO add your handling code here:
         
+        double valor = Double.parseDouble(txtValor1.getText());
+        conta1.sacar(valor);
+        
+        imprimeConta();
+        
     }//GEN-LAST:event_btnSacar1ActionPerformed
 
     private void btnSacar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSacar2ActionPerformed
         // TODO add your handling code here:
+        double valor = Double.parseDouble(txtValor2.getText());
+        conta2.sacar(valor);
         
+        imprimeConta();
     }//GEN-LAST:event_btnSacar2ActionPerformed
 
     private void btnDepositar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDepositar1ActionPerformed
         // TODO add your handling code here:
+        double valor = Double.parseDouble(txtValor1.getText());
+        conta1.deposito(valor);
         
+        imprimeConta();
     }//GEN-LAST:event_btnDepositar1ActionPerformed
 
     private void btnDepositar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDepositar2ActionPerformed
         // TODO add your handling code here:
+        double valor = Double.parseDouble(txtValor2.getText());
+        conta2.deposito(valor);
         
+        imprimeConta();
     }//GEN-LAST:event_btnDepositar2ActionPerformed
 
     /**
