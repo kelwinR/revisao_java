@@ -12,6 +12,11 @@ public class Programacao {
      */
     public static void main(String[] args) {
         
+        Tools objeto = new Tools();
+        objeto.verificaParImpar(5);
+        objeto.verificaParImpar(20);
+        
+        
         // Laço de repetição FOR - Tabuada
         int tabuada = 2;
         
