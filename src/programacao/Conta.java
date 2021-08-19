@@ -14,12 +14,14 @@ public class Conta {
     private int conta;
     private String nomePessoa;
     private double saldo;
+    private double chequeEspecial;
 
-    public Conta(int agencia, int conta, String nomePessoa, double saldo) {
+    public Conta(int agencia, int conta, String nomePessoa, double saldo, double chequeEspecial) {
         this.agencia = agencia;
         this.conta = conta;
         this.nomePessoa = nomePessoa;
         this.saldo = saldo;
+        this.saldo = chequeEspecial;
     }
     
     
@@ -54,17 +56,36 @@ public class Conta {
     public void setSaldo(double saldo) {
         this.saldo = saldo;
     }
+
+    public double getChequeEspecial() {
+        return chequeEspecial;
+    }
+
+    public void setChequeEspecial(double chequeEspecial) {
+        this.chequeEspecial = chequeEspecial;
+    }
+     
     
-    
-    @Override
+     @Override
     public String toString(){
-        return "Conta: " + this.conta + " - Saldo: " + Tools.formatarValor(this.saldo); 
+        return "Conta: " + this.conta + " - Saldo: " + Tools.formatarValor(this.saldo, true);
     }
     
-    public void sacar(double valorSaque){
-        double saldoNovo = this.saldo - valorSaque;
-        this.saldo = saldoNovo;
-        
+    public boolean sacar(double valor){
+        try{
+            double resultado = this.saldo - valor;
+            //não pode ultrapassar o cheque especial
+            if(resultado >= (this.chequeEspecial * -1)){
+                this.saldo -= valor;
+                return true;
+            }else{
+                return false;
+            }
+            
+        }catch(Exception ex){
+            System.err.println(ex.getMessage());
+            return false;
+        }
     }
     
      public void deposito(double valorDeposito){

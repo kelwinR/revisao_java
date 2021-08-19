@@ -5,6 +5,9 @@
  */
 package programacao;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+
 /**
  *
  * @author kelwin.rodrigues
@@ -50,16 +53,29 @@ public class Tools {
         }
             */
                 }
-    
-            public static String formatarValor(Double valor){
-                return "R$ " +valor;
-            }   
-    
-    
-    
+     public static String formatarValor(double valor, boolean sifrao){
+        try{
+            
+            DecimalFormat format = new DecimalFormat("###,###,##0.00");
+            format.setRoundingMode(RoundingMode.DOWN);
+            if(sifrao){
+                return "R$ " + format.format(valor);
+            }else{
+                return format.format(valor);
+            }
+            
+        }catch(Exception ex){
+            System.err.println(ex.getMessage());
+            return "";
+        }
         
     }
     
+    
+    
+}
+    
+           
     
     
 

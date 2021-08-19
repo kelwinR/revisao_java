@@ -5,6 +5,9 @@
  */
 package programacao;
 
+import com.formdev.flatlaf.FlatDarkLaf;
+import javax.swing.UIManager;
+
 /**
  *
  * @author kelwin.rodrigues
@@ -21,19 +24,34 @@ public class Terminal extends javax.swing.JFrame {
         initComponents();
         
         
-        conta1 = new Conta(1, 123, "Kelwin", 500);
-        conta2 = new Conta(1, 456, "José", 500);
+        conta1 = new Conta(1, 123, "Kelwin", 5000, 2000);
+        conta2 = new Conta(1, 456, "José", 1500, 2000);
         
         imprimeConta();
        
     }
     
     public void imprimeConta(){
-        lblConta2.setText(conta1.getNomePessoa());
-        lblSaldo2.setText(Tools.formatarValor(conta1.getSaldo()));
+       try{
+            lblConta2.setText(conta1.getNomePessoa());
+            if(conta1.getSaldo() >= 0){
+                lblSaldo2.setForeground(new java.awt.Color(67, 160, 71));
+            }else{
+                lblSaldo2.setForeground(new java.awt.Color(244, 81, 30));
+            }
+            lblSaldo2.setText(Tools.formatarValor(conta1.getSaldo(), true));
+            
+            lblConta4.setText(conta2.getNomePessoa());
+            if(conta2.getSaldo() >= 0){
+                lblSaldo4.setForeground(new java.awt.Color(67, 160, 71));
+            }else{
+                lblSaldo4.setForeground(new java.awt.Color(244, 81, 30));
+            }
+            lblSaldo4.setText(Tools.formatarValor(conta2.getSaldo(), true));
         
-        lblConta4.setText(conta2.getNomePessoa());
-        lblSaldo4.setText(Tools.formatarValor(conta2.getSaldo()));
+        }catch(Exception ex){
+            System.err.println(ex.getMessage());
+        }
     }
 
     /**
@@ -53,6 +71,7 @@ public class Terminal extends javax.swing.JFrame {
         lblConta2 = new javax.swing.JLabel();
         lblSaldo2 = new javax.swing.JLabel();
         btnDepositar1 = new javax.swing.JButton();
+        btnTransferir1 = new javax.swing.JButton();
         jpnConta2 = new javax.swing.JPanel();
         lblConta3 = new javax.swing.JLabel();
         btnSacar2 = new javax.swing.JButton();
@@ -61,6 +80,7 @@ public class Terminal extends javax.swing.JFrame {
         lblConta4 = new javax.swing.JLabel();
         lblSaldo4 = new javax.swing.JLabel();
         btnDepositar2 = new javax.swing.JButton();
+        btnTransferir2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -90,6 +110,13 @@ public class Terminal extends javax.swing.JFrame {
             }
         });
 
+        btnTransferir1.setText("Transferir");
+        btnTransferir1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTransferir1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpnConta1Layout = new javax.swing.GroupLayout(jpnConta1);
         jpnConta1.setLayout(jpnConta1Layout);
         jpnConta1Layout.setHorizontalGroup(
@@ -108,8 +135,10 @@ public class Terminal extends javax.swing.JFrame {
                     .addGroup(jpnConta1Layout.createSequentialGroup()
                         .addComponent(btnSacar1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnDepositar1)))
-                .addGap(0, 20, Short.MAX_VALUE))
+                        .addComponent(btnDepositar1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnTransferir1)))
+                .addGap(0, 10, Short.MAX_VALUE))
         );
         jpnConta1Layout.setVerticalGroup(
             jpnConta1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -127,10 +156,12 @@ public class Terminal extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(txtValor1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jpnConta1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jpnConta1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnSacar1)
-                    .addComponent(btnDepositar1))
-                .addContainerGap(35, Short.MAX_VALUE))
+                    .addGroup(jpnConta1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnDepositar1)
+                        .addComponent(btnTransferir1)))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         jpnConta2.setBorder(javax.swing.BorderFactory.createTitledBorder("CONTA 2"));
@@ -159,6 +190,13 @@ public class Terminal extends javax.swing.JFrame {
             }
         });
 
+        btnTransferir2.setText("Transferir");
+        btnTransferir2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTransferir2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpnConta2Layout = new javax.swing.GroupLayout(jpnConta2);
         jpnConta2.setLayout(jpnConta2Layout);
         jpnConta2Layout.setHorizontalGroup(
@@ -177,8 +215,10 @@ public class Terminal extends javax.swing.JFrame {
                     .addGroup(jpnConta2Layout.createSequentialGroup()
                         .addComponent(btnSacar2, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnDepositar2)))
-                .addGap(0, 20, Short.MAX_VALUE))
+                        .addComponent(btnDepositar2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnTransferir2)))
+                .addGap(0, 10, Short.MAX_VALUE))
         );
         jpnConta2Layout.setVerticalGroup(
             jpnConta2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -196,9 +236,11 @@ public class Terminal extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(txtValor2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jpnConta2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jpnConta2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnSacar2)
-                    .addComponent(btnDepositar2))
+                    .addGroup(jpnConta2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnDepositar2)
+                        .addComponent(btnTransferir2)))
                 .addContainerGap(35, Short.MAX_VALUE))
         );
 
@@ -207,11 +249,9 @@ public class Terminal extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
                 .addComponent(jpnConta1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jpnConta2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addComponent(jpnConta2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -220,45 +260,102 @@ public class Terminal extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jpnConta2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jpnConta1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSacar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSacar1ActionPerformed
-        // TODO add your handling code here:
-        
-        double valor = Double.parseDouble(txtValor1.getText());
-        conta1.sacar(valor);
-        
-        imprimeConta();
+        // TODO add your handling code here:     
+        try{
+            double valor = Double.parseDouble(txtValor1.getText());
+            boolean operacao = conta1.sacar(valor);
+            if(operacao == true){
+                //saque deu certo
+                CaixaDeDialogo.obterinstancia().exibirMensagem("Saque Realizado", 'i');
+            }else{
+                //saque não realizado
+                CaixaDeDialogo.obterinstancia().exibirMensagem("Saque Não Realizado", 'e');
+            }
+
+            imprimeConta();
+            
+        }catch(Exception ex){
+            System.err.println(ex.getMessage());
+        }
         
     }//GEN-LAST:event_btnSacar1ActionPerformed
 
     private void btnSacar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSacar2ActionPerformed
         // TODO add your handling code here:
-        double valor = Double.parseDouble(txtValor2.getText());
-        conta2.sacar(valor);
-        
-        imprimeConta();
+        try{
+            double valor = Double.parseDouble(txtValor2.getText());
+            boolean operacao = conta2.sacar(valor);
+            if(operacao == true){
+                //saque deu certo
+                CaixaDeDialogo.obterinstancia().exibirMensagem("Saque Realizado", 'i');
+            }else{
+                //saque não realizado
+                CaixaDeDialogo.obterinstancia().exibirMensagem("Saque Não Realizado", 'e');
+            }
+
+            imprimeConta();
+            
+        }catch(Exception ex){
+            System.err.println(ex.getMessage());
+        }
     }//GEN-LAST:event_btnSacar2ActionPerformed
 
     private void btnDepositar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDepositar1ActionPerformed
         // TODO add your handling code here:
+       try{
         double valor = Double.parseDouble(txtValor1.getText());
         conta1.deposito(valor);
         
         imprimeConta();
+        }catch(Exception ex){
+            System.out.println(ex.getMessage());
+        }
     }//GEN-LAST:event_btnDepositar1ActionPerformed
 
     private void btnDepositar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDepositar2ActionPerformed
         // TODO add your handling code here:
+        try{
         double valor = Double.parseDouble(txtValor2.getText());
         conta2.deposito(valor);
         
         imprimeConta();
+        }catch(Exception ex){
+            System.out.println(ex.getMessage());
+        }
     }//GEN-LAST:event_btnDepositar2ActionPerformed
+
+    private void btnTransferir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransferir1ActionPerformed
+        // TODO add your handling code here:
+       double valor = Double.parseDouble(txtValor1.getText());
+           conta1.sacar(valor);
+           conta2.deposito(valor);
+            imprimeConta();
+            /*double valor = Double.parseDouble(txtValor1.getText());
+        conta1.sacar(valor);
+        
+        imprimeConta();*/
+        
+            
+     
+        
+    }//GEN-LAST:event_btnTransferir1ActionPerformed
+
+    private void btnTransferir2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransferir2ActionPerformed
+        // TODO add your handling code here:
+        double valor = Double.parseDouble(txtValor2.getText());
+           conta2.sacar(valor);
+           conta1.deposito(valor);
+            imprimeConta();
+        
+        
+    }//GEN-LAST:event_btnTransferir2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -286,7 +383,13 @@ public class Terminal extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Terminal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        
+        try {
+            UIManager.setLookAndFeel( new FlatDarkLaf() );
+        } catch( Exception ex ) {
+            System.err.println( "Failed to initialize LaF" );
+        }
+                       
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -300,6 +403,8 @@ public class Terminal extends javax.swing.JFrame {
     private javax.swing.JButton btnDepositar2;
     private javax.swing.JButton btnSacar1;
     private javax.swing.JButton btnSacar2;
+    private javax.swing.JButton btnTransferir1;
+    private javax.swing.JButton btnTransferir2;
     private javax.swing.JPanel jpnConta1;
     private javax.swing.JPanel jpnConta2;
     private javax.swing.JLabel lblConta1;
