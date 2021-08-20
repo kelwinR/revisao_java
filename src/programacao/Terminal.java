@@ -333,25 +333,45 @@ public class Terminal extends javax.swing.JFrame {
 
     private void btnTransferir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransferir1ActionPerformed
         // TODO add your handling code here:
-       double valor = Double.parseDouble(txtValor1.getText());
-           conta1.sacar(valor);
-           conta2.deposito(valor);
+try{       
+double valor = Double.parseDouble(txtValor1.getText());
+           
+           boolean operacao = conta1.sacar(valor);
+            if(operacao == true){
+                conta2.deposito(valor);
+                CaixaDeDialogo.obterinstancia().exibirMensagem("Transferência Realizada", 'i');
+            }else{
+                //saque não realizado
+                CaixaDeDialogo.obterinstancia().exibirMensagem("Transferência Não Realizada", 'e');
+            }
+                }catch(Exception ex){
+                        System.err.println(ex.getMessage());
+                    }
+    
             imprimeConta();
             /*double valor = Double.parseDouble(txtValor1.getText());
         conta1.sacar(valor);
-        
         imprimeConta();*/
-        
-            
-     
-        
+
     }//GEN-LAST:event_btnTransferir1ActionPerformed
 
     private void btnTransferir2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransferir2ActionPerformed
         // TODO add your handling code here:
-        double valor = Double.parseDouble(txtValor2.getText());
-           conta2.sacar(valor);
-           conta1.deposito(valor);
+        try{       
+double valor = Double.parseDouble(txtValor2.getText());
+           
+           boolean operacao = conta2.sacar(valor);
+            if(operacao == true){
+                conta1.deposito(valor);
+                CaixaDeDialogo.obterinstancia().exibirMensagem("Transferência Realizada", 'i');
+            }else{
+            
+                CaixaDeDialogo.obterinstancia().exibirMensagem("Transferência Não Realizada", 'e');
+            }
+                }catch(Exception ex){
+                        System.err.println(ex.getMessage());
+                    }
+    
             imprimeConta();
         
         

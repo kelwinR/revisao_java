@@ -21,7 +21,7 @@ public class Conta {
         this.conta = conta;
         this.nomePessoa = nomePessoa;
         this.saldo = saldo;
-        this.saldo = chequeEspecial;
+        this.chequeEspecial = chequeEspecial;
     }
     
     

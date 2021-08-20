@@ -13,13 +13,13 @@ public class TerminalBanco {
     
     public static void main(String[] args){
         
-        Conta conta1 = new Conta(1, 123, "Kelwin", 500, 2000);
+        Conta conta1 = new Conta(1, 123, "Kelwin", 500, 1000);
         /*conta1.setAgencia(1);
         conta1.setConta(123);
         conta1.setNomePessoa("Kelwin");
         conta1.setSaldo(500);*/
         
-        Conta conta2 = new Conta(1, 456, "Patrick", 500, 2000);
+        Conta conta2 = new Conta(1, 456, "Patrick", 500, 1000);
 
         System.out.println(conta1.toString());
         //System.out.println(conta2.toString());
